@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-labelledby="title desc">
+  <title id="title">Caffetteria Guidonia Montecelio</title>
+  <desc id="desc">Immagine segnaposto calda per la sede di Guidonia Montecelio.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#6B3F2A"/>
+      <stop offset=".48" stop-color="#262626"/>
+      <stop offset="1" stop-color="#0B6B37"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#g)"/>
+  <rect x="120" y="930" width="960" height="92" fill="#D8D7CF" opacity=".9"/>
+  <rect x="210" y="500" width="780" height="390" fill="#0D0D0D" opacity=".55"/>
+  <circle cx="430" cy="760" r="110" fill="#F6F4EC" opacity=".92"/>
+  <circle cx="430" cy="760" r="64" fill="#6B3F2A" opacity=".72"/>
+  <rect x="590" y="650" width="280" height="170" fill="#F6F4EC" opacity=".82"/>
+  <rect x="620" y="690" width="220" height="28" fill="#0B6B37" opacity=".9"/>
+</svg>

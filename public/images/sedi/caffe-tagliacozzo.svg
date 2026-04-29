@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-labelledby="title desc">
+  <title id="title">Caffetteria Tagliacozzo</title>
+  <desc id="desc">Immagine segnaposto elegante per la sede di Tagliacozzo.</desc>
+  <defs>
+    <linearGradient id="g" x1="1" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#0B6B37"/>
+      <stop offset=".42" stop-color="#262626"/>
+      <stop offset="1" stop-color="#6B3F2A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#g)"/>
+  <rect x="0" y="970" width="1200" height="170" fill="#0D0D0D" opacity=".64"/>
+  <rect x="150" y="360" width="900" height="540" fill="#F6F4EC" opacity=".16"/>
+  <circle cx="760" cy="690" r="118" fill="#F6F4EC" opacity=".88"/>
+  <circle cx="760" cy="690" r="72" fill="#0D0D0D" opacity=".6"/>
+  <rect x="250" y="640" width="300" height="52" fill="#D8D7CF" opacity=".8"/>
+  <rect x="250" y="730" width="420" height="34" fill="#0B6B37" opacity=".8"/>
+</svg>
