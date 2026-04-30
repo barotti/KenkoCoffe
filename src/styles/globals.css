@@ -916,19 +916,61 @@ p {
   opacity: 0.7;
 }
 
+/* Dots — hidden on desktop */
+.exp-slider__dots {
+  display: none;
+}
+
+.exp-slider__dot {
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 8px;
+  padding: 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+  width: 8px;
+}
+
+.exp-slider__dot--active {
+  background: var(--color-green);
+  transform: scale(1.35);
+}
+
 @media (max-width: 700px) {
+  .exp-slider {
+    padding: 0;
+  }
+
   .exp-slider__track {
-    grid-template-columns: 1fr;
-    height: auto;
+    border-radius: 0;
+    display: flex;
+    height: 420px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .exp-slider__track::-webkit-scrollbar {
+    display: none;
   }
 
   .exp-slider__panel {
-    height: 300px;
+    flex: 0 0 100%;
+    height: 100%;
+    scroll-snap-align: start;
   }
 
   .exp-slider__nav--prev,
   .exp-slider__nav--next {
     display: none;
+  }
+
+  .exp-slider__dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
   }
 }
 
