@@ -30,6 +30,14 @@ export default function Home() {
           >
             <source src="/images/home/kenko.mov" type="video/mp4" />
           </video>
+          <Image
+            src="/images/home/_DSC7150.JPG"
+            alt="Kenko Coffee"
+            fill
+            className="hero__img"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            priority
+          />
         </div>
         <div className="hero__content">
           <p className="eyebrow" data-hero-reveal>

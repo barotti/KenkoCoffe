@@ -222,6 +222,19 @@ main {
   object-position: center;
 }
 
+.hero__img {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .hero__video {
+    display: none;
+  }
+  .hero__img {
+    display: block !important;
+  }
+}
+
 .detail-photo,
 .location-card__image {
   background:

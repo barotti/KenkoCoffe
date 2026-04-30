@@ -986,9 +986,11 @@
   }
 
   .cg-stage {
-    min-height: 430px;
+    width: min(82vw, 380px);
+    height: min(82vw, 380px);
+    min-height: 0;
     max-height: none;
-    width: 100%;
+    margin: 0 auto;
   }
 
   .cg-stage::before {

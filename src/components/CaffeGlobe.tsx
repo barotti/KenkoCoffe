@@ -95,16 +95,20 @@ export function CaffeGlobe() {
 
     const scene  = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
-    camera.position.set(0, 0.1, 5.2);
+    camera.position.set(0, 0, 5.2);
+    camera.lookAt(0, 0, 0);
 
-    function resize() {
-      const w = stage!.clientWidth, h = stage!.clientHeight;
+    function applySize(w: number, h: number) {
+      if (!w || !h) return;
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
     }
-    resize();
-    const ro = new ResizeObserver(resize);
+    applySize(stage.clientWidth, stage.clientHeight);
+    const ro = new ResizeObserver((entries) => {
+      const rect = entries[0]?.contentRect;
+      if (rect) applySize(rect.width, rect.height);
+    });
     ro.observe(stage);
 
     // ── Lighting ──────────────────────────────────────────────────────
