@@ -277,6 +277,30 @@
 
 /* ── Section ── */
 .cp-section { padding: 8rem 2.5rem; position: relative; }
+
+#blend {
+  background: #f6f4ec;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+#blend .cp-section__num { color: var(--green-primary); border-color: rgba(0,112,74,0.3); }
+#blend .cp-section__title { color: #0d1f1a; }
+#blend .cp-section__title em { color: var(--green-bright); }
+#blend .cp-blends { background: rgba(0,112,74,0.12); border-color: rgba(0,112,74,0.2); }
+#blend .cp-blend { background: var(--green-primary); }
+#blend .cp-blend:hover { background: #005a3c; }
+#blend .cp-blend__decor { color: rgba(255,255,255,0.45); }
+#blend .cp-blend__decor strong { color: rgba(255,255,255,0.85); }
+#blend .cp-blend__name { color: #fff; }
+#blend .cp-blend__name em { color: var(--green-bright); }
+#blend .cp-blend__sub { color: rgba(255,255,255,0.75); opacity: 1; }
+#blend .cp-blend__desc { color: rgba(255,255,255,0.82); opacity: 1; }
+#blend .cp-chip { color: #fff; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
+#blend .cp-chip:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.5); color: #fff; }
+#blend .cp-tasting { border-color: rgba(255,255,255,0.18); }
+#blend .cp-tasting dt { color: rgba(255,255,255,0.55); }
+#blend .cp-tasting dd { color: #fff; }
 .cp-section--bordered { border-top: 1px solid var(--hairline); }
 .cp-section__head {
   max-width: 1280px;
@@ -287,7 +311,7 @@
   align-items: end;
 }
 .cp-section__num { font-family:var(--mono); font-size:0.62rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--green-bright); border-top:1px solid var(--hairline-green); padding-top:0.7rem; }
-.cp-section__title { font-family:var(--serif); font-size:clamp(2.2rem,4.4vw,3.8rem); font-weight:400; line-height:1.05; letter-spacing:-0.018em; color:var(--cream); }
+.cp-section__title { font-family:var(--font-main); font-size:clamp(2.2rem,4.4vw,3.8rem); font-weight:800; line-height:1.05; letter-spacing:-0.018em; color:var(--cream); }
 .cp-section__title em { font-style:italic; color:var(--green-bright); font-weight:500; }
 
 /* ── Blends ── */
@@ -311,13 +335,13 @@
 }
 .cp-blend:hover { background: var(--bg-mid); }
 .cp-blend__decor { position:absolute; top:4rem; right:3rem; font-family:var(--mono); font-size:0.55rem; letter-spacing:0.25em; color:var(--cream-dim); text-align:right; opacity:0.6; }
-.cp-blend__decor strong { display:block; font-family:var(--serif); font-style:italic; font-weight:500; font-size:1.4rem; color:var(--green-primary); letter-spacing:0; margin-bottom:0.2rem; }
+.cp-blend__decor strong { display:block; font-family:var(--font-main); font-weight:800; font-size:1.4rem; color:var(--green-primary); letter-spacing:0; margin-bottom:0.2rem; }
 .cp-blend__tag { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--green-bright); margin-bottom:1.2rem; display:flex; align-items:center; gap:0.7rem; }
 .cp-blend__tag::before { content:''; width:0.5rem; height:0.5rem; border:1px solid var(--green-primary); border-radius:50%; background:var(--green-primary); box-shadow:0 0 10px rgba(0,112,74,0.6); }
-.cp-blend__name { font-family:var(--serif); font-size:clamp(4rem,7vw,7rem); font-weight:400; line-height:0.88; color:var(--cream); letter-spacing:-0.04em; margin-bottom:0.4rem; }
-.cp-blend__name em { font-style:italic; color:var(--green-bright); font-weight:500; }
-.cp-blend__pct { font-size:0.4em; color:var(--green-primary); margin-left:0.3rem; vertical-align:super; font-style:italic; font-weight:300; }
-.cp-blend__sub { font-family:var(--serif); font-size:1.3rem; font-style:italic; color:var(--sage); opacity:0.75; margin-bottom:2rem; }
+.cp-blend__name { font-family:var(--font-main); font-size:clamp(4rem,7vw,7rem); font-weight:800; line-height:0.88; color:var(--cream); letter-spacing:-0.04em; margin-bottom:0.4rem; }
+.cp-blend__name em { color:var(--green-bright); }
+.cp-blend__pct { font-size:0.4em; color:var(--green-primary); margin-left:0.3rem; vertical-align:super; font-weight:800; }
+.cp-blend__sub { font-family:var(--font-main); font-size:1.1rem; font-weight:800; letter-spacing:0.04em; color:var(--sage); opacity:0.75; margin-bottom:2rem; }
 .cp-blend__desc { color:var(--sage); opacity:0.8; line-height:1.8; margin-bottom:2.5rem; max-width:42ch; font-size:0.97rem; }
 .cp-blend__origins { display:flex; flex-wrap:wrap; gap:0.45rem; margin-bottom:2.5rem; }
 .cp-chip { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; padding:0.5rem 0.9rem; border:1px solid var(--hairline-green); color:var(--cream); background:rgba(0,112,74,0.06); transition:all 0.4s; border-radius:2px; }
@@ -325,6 +349,12 @@
 .cp-tasting { margin-top:auto; padding-top:2.2rem; border-top:1px solid var(--hairline); display:grid; grid-template-columns:minmax(120px,auto) 1fr; gap:1.4rem 2rem; }
 .cp-tasting dt { font-family:var(--mono); font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--cream-dim); align-self:start; padding-top:0.25rem; }
 .cp-tasting dd { font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--cream); line-height:1.4; }
+
+/* ── Origins — mid green background ── */
+.cp-section--bordered {
+  background: var(--bg-mid);
+  border-top: 1px solid var(--hairline);
+}
 
 /* ── Origins ── */
 .cp-origins {
@@ -339,7 +369,7 @@
 .cp-origin:hover { background:rgba(0,112,74,0.06); }
 .cp-origin--kenko { background:rgba(0,112,74,0.04); }
 .cp-origin__num { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.3em; color:var(--green-bright); margin-bottom:1.5rem; }
-.cp-origin__name { font-family:var(--serif); font-size:2.4rem; font-weight:500; color:var(--cream); margin-bottom:0.3rem; letter-spacing:-0.015em; line-height:1; }
+.cp-origin__name { font-family:var(--font-main); font-size:2.4rem; font-weight:800; color:var(--cream); margin-bottom:0.3rem; letter-spacing:-0.015em; line-height:1; }
 .cp-origin__name--em { font-style:italic; color:var(--green-bright); }
 .cp-origin__region { font-family:var(--mono); font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--cream-dim); margin-bottom:1.2rem; }
 .cp-origin__coord { font-family:var(--mono); font-size:0.55rem; letter-spacing:0.15em; color:var(--green-primary); opacity:0.7; margin-bottom:1.3rem; }
