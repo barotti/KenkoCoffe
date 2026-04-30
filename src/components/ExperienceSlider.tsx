@@ -2,29 +2,12 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 const slides = [
-  {
-    title: "Caffè",
-    image: "/images/home/pexels-cihanyuce-30349793.jpg",
-    href: "/caffe",
-  },
-  {
-    title: "Colazione",
-    image: "/images/home/DSC00998.png",
-    href: null,
-  },
-  {
-    title: "Aperitivi",
-    image: "/images/home/DSC00818.PNG",
-    href: null,
-  },
-  {
-    title: "Eventi",
-    image: "/images/home/_DSC4951.JPG",
-    href: null,
-  },
+  { title: "Caffè",     image: "/images/home/pexels-cihanyuce-30349793.jpg" },
+  { title: "Colazione", image: "/images/home/DSC00998.png" },
+  { title: "Aperitivi", image: "/images/home/DSC00818.PNG" },
+  { title: "Eventi",    image: "/images/home/_DSC4951.JPG" },
 ];
 
 export function ExperienceSlider() {
@@ -95,15 +78,7 @@ export function ExperienceSlider() {
             </>
           );
 
-          return slide.href ? (
-            <Link
-              key={slide.title}
-              href={slide.href}
-              className={`exp-slider__panel${i === active ? " exp-slider__panel--active" : ""}`}
-            >
-              {inner}
-            </Link>
-          ) : (
+          return (
             <div
               key={slide.title}
               className={`exp-slider__panel${i === active ? " exp-slider__panel--active" : ""}`}

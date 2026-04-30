@@ -65,6 +65,19 @@ export default function Home() {
 
       <ExperienceSlider />
 
+      <section className="parallax-banner">
+        <div className="parallax-banner__content">
+          <p className="parallax-banner__eyebrow">La nostra selezione</p>
+          <h2 className="parallax-banner__title">I Nostri Caffè</h2>
+          <p className="parallax-banner__text">
+            Cinque origini, due blend, una sola filosofia. Abbiamo selezionato
+            i migliori chicchi dal mondo per portarti il carattere di ogni
+            piantagione direttamente in tazza.
+          </p>
+          <Button href="/caffe" variant="light">Scopri i blend</Button>
+        </div>
+      </section>
+
       <GoogleReviews />
 
       <InstagramFeed />
