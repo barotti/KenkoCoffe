@@ -946,17 +946,105 @@
 }
 
 @media (max-width: 640px) {
-  .cp-hero { padding: 4rem 1.3rem 2rem; }
-  .cg-stage {
-    min-height: 360px;
-    max-height: 90vw;
-    width: min(420px, 92vw);
+  .cp-hero {
+    gap: 1.5rem;
+    padding: 3rem 1.3rem 2.8rem;
   }
+
+  .cp-hero__content {
+    max-width: 100%;
+  }
+
+  .cp-eyebrow {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
+    letter-spacing: 0.24em;
+    margin-bottom: 1.5rem;
+  }
+
+  .cp-eyebrow span {
+    margin-left: 0;
+  }
+
+  .cp-hero__title {
+    font-size: clamp(2.35rem, 13vw, 3.35rem);
+    line-height: 1;
+    margin-bottom: 1.3rem;
+    overflow-wrap: anywhere;
+  }
+
+  .cp-hero__sub {
+    font-size: 0.38em;
+    line-height: 1.2;
+  }
+
+  .cp-hero__lede {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  .cg-stage {
+    min-height: 430px;
+    max-height: none;
+    width: 100%;
+  }
+
+  .cg-stage::before {
+    width: 120vw;
+  }
+
+  .cg-stage::after {
+    bottom: 5%;
+    width: 72vw;
+  }
+
+  .cg-corner {
+    font-size: 0.48rem;
+    letter-spacing: 0.2em;
+    max-width: calc(100% - 2rem);
+  }
+
+  .cg-corner--tl {
+    left: 1rem;
+    top: 1rem;
+  }
+
+  .cg-corner--tr {
+    display: none;
+  }
+
+  .cg-label {
+    display: none;
+  }
+
+  .cg-meta {
+    bottom: 1rem;
+    font-size: 0.48rem;
+    gap: 0.65rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+    width: min(260px, 76vw);
+  }
+
+  .cg-meta::before,
+  .cg-meta::after {
+    width: 1.7rem;
+  }
+
   .cp-section, .cp-manifesto { padding: 5rem 1.3rem; }
   .cp-blend { padding: 2.8rem 1.5rem; min-height: auto; }
   .cp-origins { grid-template-columns: 1fr; }
-  .cp-stats { gap: 1.5rem; }
+  .cp-stats {
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .cp-stat__num { font-size: 1.8rem; }
+  .cp-stat__label {
+    font-size: 0.5rem;
+    letter-spacing: 0.18em;
+  }
   .cp-tasting { grid-template-columns: 1fr; gap: 0.4rem 0; }
   .aw-section { padding: 4rem 1.3rem 3rem; }
   .aw-cat-text { font-size: 12px; }
