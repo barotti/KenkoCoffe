@@ -147,6 +147,56 @@ main {
   text-transform: uppercase;
 }
 
+.menu-toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--color-black);
+  cursor: pointer;
+  display: none;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  width: 44px;
+}
+
+.menu-toggle span {
+  background: currentColor;
+  display: block;
+  height: 2px;
+  left: 10px;
+  position: absolute;
+  transition: transform 180ms ease, opacity 180ms ease, top 180ms ease;
+  width: 24px;
+}
+
+.menu-toggle span:nth-child(1) {
+  top: 13px;
+}
+
+.menu-toggle span:nth-child(2) {
+  top: 21px;
+}
+
+.menu-toggle span:nth-child(3) {
+  top: 29px;
+}
+
+.site-header--open .menu-toggle span:nth-child(1) {
+  top: 21px;
+  transform: rotate(45deg);
+}
+
+.site-header--open .menu-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header--open .menu-toggle span:nth-child(3) {
+  top: 21px;
+  transform: rotate(-45deg);
+}
+
 .hero {
   background: var(--color-black);
   color: var(--color-white);
@@ -704,20 +754,45 @@ p {
   .site-header {
     align-items: center;
     display: grid;
-    gap: 14px 18px;
+    gap: 0 18px;
     grid-template-columns: auto 1fr;
     min-height: auto;
-    padding-bottom: 18px;
-    padding-top: 18px;
+    padding: 14px 20px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    justify-self: end;
   }
 
   .site-nav {
+    align-items: flex-start;
+    background: rgba(246, 244, 236, 0.98);
+    border-top: 1px solid rgba(31, 122, 58, 0.16);
+    display: none;
+    flex-direction: column;
     flex-wrap: wrap;
+    font-size: 0.9rem;
+    gap: 18px;
     grid-column: 1 / -1;
+    margin-top: 14px;
+    padding: 18px 0 2px;
+    width: 100%;
+  }
+
+  .site-header--open .site-nav {
+    display: flex;
   }
 
   .header-cta {
-    justify-self: end;
+    display: none;
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 18px;
+  }
+
+  .site-header--open .header-cta {
+    display: inline-flex;
   }
 
   .hero {
@@ -750,12 +825,12 @@ p {
 
 @media (max-width: 560px) {
   .site-header {
-    gap: 18px 16px;
-    padding: 22px 20px 28px;
+    gap: 0 16px;
+    padding: 16px 18px;
   }
 
   .brand__logo {
-    height: 52px;
+    height: 48px;
   }
 
   .hero__content {
