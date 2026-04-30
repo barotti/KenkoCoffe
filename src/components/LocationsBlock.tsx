@@ -8,7 +8,7 @@ export function LocationsBlock() {
       <div className="section-heading section-heading--dark">
         <div>
           <p className="eyebrow">Le nostre sedi</p>
-          <h2>Due luoghi, la stessa cura al banco.</h2>
+          <h2>Due caffetterie, la stessa cura al banco.</h2>
         </div>
         <Link href="/contatti">Vedi contatti</Link>
       </div>

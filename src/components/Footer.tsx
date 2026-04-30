@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { locations } from "@/data/locations";
 import { navigation } from "@/data/navigation";
 
@@ -7,10 +8,9 @@ export function Footer() {
     <footer className="site-footer">
       <div>
         <Link className="brand brand--footer" href="/">
-          <span className="brand__mark">K</span>
-          <span>Kenko Coffee</span>
+          <Image src="/images/home/LOGO.PNG" alt="Kenko" width={34} height={34} style={{ objectFit: "contain" }} />
+          <span>Kenko Kohi</span>
         </Link>
-        <p>Caffè, colazioni e pause curate tra Guidonia Montecelio e Tagliacozzo.</p>
       </div>
       <div className="footer-grid">
         <div>

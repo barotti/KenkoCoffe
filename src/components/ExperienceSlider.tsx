@@ -64,7 +64,7 @@ export function ExperienceSlider() {
               />
               <div className="exp-slider__overlay" />
               <span className="exp-slider__title">{slide.title}</span>
-              <span className="exp-slider__label" aria-hidden="true">Kenko Kohi</span>
+              <span className="exp-slider__label" aria-hidden="true"></span>
               {i === 0 && (
                 <button className="exp-slider__nav exp-slider__nav--prev" onClick={(e) => { e.stopPropagation(); prev(); }}>
                   ← Prev
