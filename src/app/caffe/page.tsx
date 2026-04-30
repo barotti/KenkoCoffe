@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CaffeGlobe } from "@/components/CaffeGlobe";
+import { AromaWheel } from "@/components/AromaWheel";
 import "./caffe.css";
 
 export const metadata: Metadata = {
@@ -108,45 +109,7 @@ export default function CaffePage() {
         </div>
       </section>
 
-      {/* ── ORIGINS ── */}
-      <section className="cp-section cp-section--bordered" id="origini">
-        <header className="cp-section__head">
-          <div className="cp-section__num">01 — Le cinque origini</div>
-          <h2 className="cp-section__title">Da dove viene la nostra <em>magia</em>.</h2>
-        </header>
-
-        <div className="cp-origins">
-          {[
-            { n:"01 / Sud America",    name:"Colombia",  region:"Andes Centrali",  coord:"04°34′ N · 74°17′ W", text:"Coltivazioni d'altura sulle pendici della Cordigliera. Climi miti e suoli vulcanici donano un caffè equilibrato, dolce, con la rotondità classica dell'arabica colombiana.", blends:["Blend 80/20","Blend 100%"] },
-            { n:"02 / Sud America",    name:"Brasile",   region:"Cerrado Mineiro", coord:"14°14′ S · 51°55′ W", text:"Patria del caffè più consumato al mondo. Le piantagioni del Minas Gerais regalano corpo, dolcezza naturale e quella firma di cacao e nocciola che tiene insieme i nostri blend.", blends:["Blend 80/20","Blend 100%"] },
-            { n:"03 / Centro America", name:"Nicaragua", region:"Jinotega",        coord:"12°51′ N · 85°12′ W", text:"Le montagne di Jinotega, ombreggiate dalla foresta tropicale, producono caffè con corpo pieno e una vibrante acidità. È qui che nasce la spinta fruttata del nostro 80/20.", blends:["Blend 80/20"] },
-            { n:"04 / Asia",           name:"India",     region:"Karnataka",       coord:"12°58′ N · 77°35′ E", text:"Sui Western Ghats si coltiva una robusta dal carattere unico, meno amara, con sentori speziati. Porta al blend struttura e quella crema densa che firma l'espresso.", blends:["Blend 80/20"] },
-            { n:"05 / Africa orientale",name:"Sidamo",   region:"Etiopia",         coord:"06°44′ N · 38°29′ E", text:"La culla del caffè. Negli altopiani del sud etiope, l'arabica cresce come pianta spontanea da secoli. Aroma floreale, agrumato, complesso — il cuore raffinato del Blend 100%.", blends:["Blend 100%"] },
-          ].map(o => (
-            <article key={o.name} className="cp-origin">
-              <div className="cp-origin__num">{o.n}</div>
-              <h3 className="cp-origin__name">{o.name}</h3>
-              <div className="cp-origin__region">{o.region}</div>
-              <div className="cp-origin__coord">{o.coord}</div>
-              <p className="cp-origin__text">{o.text}</p>
-              <div className="cp-origin__tags">
-                {o.blends.map(b => <span key={b} className="cp-origin__tag">{b}</span>)}
-              </div>
-            </article>
-          ))}
-          <article className="cp-origin cp-origin--kenko">
-            <div className="cp-origin__num">— Filosofia</div>
-            <h3 className="cp-origin__name cp-origin__name--em">Kenko</h3>
-            <div className="cp-origin__region">健康 · Salute, equilibrio</div>
-            <div className="cp-origin__coord">— Una tazza alla volta</div>
-            <p className="cp-origin__text">
-              Ogni miscela è il risultato di tostature controllate, di
-              proporzioni studiate, di rispetto per la materia prima.
-              Cinque origini, due blend, un&apos;unica idea di caffè.
-            </p>
-          </article>
-        </div>
-      </section>
+      <AromaWheel />
 
     </div>
   );

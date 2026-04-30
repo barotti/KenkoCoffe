@@ -20,7 +20,17 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getCafeSchema()) }}
       />
       <section className="hero">
-        <div className="hero__media" data-parallax />
+        <div className="hero__media" data-parallax>
+          <video
+            className="hero__video"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/images/home/kenko.mov" type="video/mp4" />
+          </video>
+        </div>
         <div className="hero__content">
           <p className="eyebrow" data-hero-reveal>
             Guidonia Montecelio / Tagliacozzo

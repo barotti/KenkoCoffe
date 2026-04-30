@@ -1,12 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-import type { GlobeMethods } from "react-globe.gl";
-
-// WebGL requires browser — no SSR
-const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
+import * as THREE from "three";
 
 interface Origin {
   id: string;
@@ -17,14 +13,6 @@ interface Origin {
   lng: number;
   text: string;
   image: string;
-}
-
-interface Arc {
-  startLat: number;
-  startLng: number;
-  endLat: number;
-  endLng: number;
-  color: string;
 }
 
 const ORIGINS: Origin[] = [
@@ -60,122 +48,313 @@ const ORIGINS: Origin[] = [
   },
 ];
 
-// Arcs connecting blend origins
-const ARCS: Arc[] = [
-  // Blend 80/20: Colombia → Brasile → Nicaragua → India → Colombia
-  { startLat: 4.5709,  startLng: -74.2973, endLat: -14.2350, endLng: -51.9253, color: "#00704a" },
-  { startLat: -14.2350, startLng: -51.9253, endLat: 12.8654,  endLng: -85.2072, color: "#00704a" },
-  { startLat: 12.8654,  startLng: -85.2072, endLat: 12.9716,  endLng:  77.5946, color: "#00704a" },
-  { startLat: 12.9716,  startLng:  77.5946, endLat: 4.5709,   endLng: -74.2973, color: "#00704a" },
-  // Blend 100%: Colombia → Brasile → Sidamo → Colombia
-  { startLat: 4.5709,  startLng: -74.2973, endLat: -14.2350, endLng: -51.9253, color: "#00a862" },
-  { startLat: -14.2350, startLng: -51.9253, endLat: 6.7333,   endLng:  38.4833, color: "#00a862" },
-  { startLat: 6.7333,   startLng:  38.4833, endLat: 4.5709,   endLng: -74.2973, color: "#00a862" },
-];
+const RADIUS   = 1.32;
+const TEX_BASE = "https://raw.githubusercontent.com/mrdoob/three.js/r128/examples/textures/";
+
+function latLngToVec3(lat: number, lng: number, r: number): THREE.Vector3 {
+  const phi   = (90 - lat) * Math.PI / 180;
+  const theta = (lng + 180) * Math.PI / 180;
+  return new THREE.Vector3(
+    -r * Math.sin(phi) * Math.cos(theta),
+     r * Math.cos(phi),
+     r * Math.sin(phi) * Math.sin(theta),
+  );
+}
+
+function quadraticBezierPoints(
+  p0: THREE.Vector3, p1: THREE.Vector3, p2: THREE.Vector3, segments = 90,
+): THREE.Vector3[] {
+  const pts: THREE.Vector3[] = [];
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments, u = 1 - t;
+    pts.push(new THREE.Vector3(
+      u*u*p0.x + 2*u*t*p1.x + t*t*p2.x,
+      u*u*p0.y + 2*u*t*p1.y + t*t*p2.y,
+      u*u*p0.z + 2*u*t*p1.z + t*t*p2.z,
+    ));
+  }
+  return pts;
+}
+
+interface MarkerData { origin: Origin; dot: THREE.Mesh; halo: THREE.Mesh; ring: THREE.Mesh; }
 
 export function CaffeGlobe() {
-  const globeRef  = useRef<GlobeMethods | undefined>(undefined);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const stageRef  = useRef<HTMLDivElement>(null);
+  const labelRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [selectedOrigin, setSelectedOrigin] = useState<Origin | null>(null);
-  const [dims, setDims] = useState({ w: 0, h: 0 });
 
-  // Track container size
   useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    const ro = new ResizeObserver(() => {
-      setDims({ w: stage.clientWidth, h: stage.clientHeight });
-    });
-    ro.observe(stage);
-    setDims({ w: stage.clientWidth, h: stage.clientHeight });
-    return () => ro.disconnect();
-  }, []);
+    const canvas = canvasRef.current;
+    const stage  = stageRef.current;
+    if (!canvas || !stage) return;
 
-  // Configure controls after globe is ready
-  const onGlobeReady = useCallback(() => {
-    const g = globeRef.current;
-    if (!g) return;
-    const controls = g.controls() as {
-      autoRotate: boolean;
-      autoRotateSpeed: number;
-      enableZoom: boolean;
-      enableDamping: boolean;
-      dampingFactor: number;
+    // ── Renderer ──────────────────────────────────────────────────────
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+    camera.position.set(0, 0.1, 5.2);
+
+    function resize() {
+      const w = stage!.clientWidth, h = stage!.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(stage);
+
+    // ── Lighting ──────────────────────────────────────────────────────
+    const sun = new THREE.DirectionalLight(0xfff5e8, 1.8);
+    sun.position.set(5, 3, 5);
+    scene.add(sun);
+    const fill = new THREE.DirectionalLight(0x223344, 0.3);
+    fill.position.set(-4, -2, -3);
+    scene.add(fill);
+    scene.add(new THREE.AmbientLight(0x111a11, 0.6));
+
+    // ── Earth ─────────────────────────────────────────────────────────
+    const earth = new THREE.Group();
+    scene.add(earth);
+
+    const loader   = new THREE.TextureLoader();
+    const earthMap = loader.load(TEX_BASE + "planets/earth_atmos_2048.jpg");
+    const specMap  = loader.load(TEX_BASE + "planets/earth_specular_2048.jpg");
+    const bumpMap  = loader.load(TEX_BASE + "planets/earth_normal_2048.jpg");
+    const cloudMap = loader.load(TEX_BASE + "planets/earth_clouds_1024.png");
+    earthMap.anisotropy = 4;
+
+    earth.add(new THREE.Mesh(
+      new THREE.SphereGeometry(RADIUS, 96, 96),
+      new THREE.MeshPhongMaterial({
+        map: earthMap, specularMap: specMap,
+        specular: new THREE.Color(0x4488aa), shininess: 18,
+        bumpMap, bumpScale: 0.05,
+      }),
+    ));
+
+    const cloudMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(RADIUS * 1.010, 72, 72),
+      new THREE.MeshPhongMaterial({ map: cloudMap, transparent: true, opacity: 0.5, depthWrite: false }),
+    );
+    scene.add(cloudMesh);
+
+    const atmo = new THREE.Mesh(
+      new THREE.SphereGeometry(RADIUS * 1.16, 64, 64),
+      new THREE.ShaderMaterial({
+        vertexShader: `
+          varying vec3 vNormal;
+          void main() {
+            vNormal = normalize(normalMatrix * normal);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+          }`,
+        fragmentShader: `
+          varying vec3 vNormal;
+          void main() {
+            float rim = 1.0 - abs(dot(vNormal, vec3(0.0,0.0,1.0)));
+            float i   = pow(rim, 3.0);
+            vec3  col = mix(vec3(0.0,0.42,0.28), vec3(0.2,0.75,0.55), rim);
+            gl_FragColor = vec4(col, i * 0.75);
+          }`,
+        blending: THREE.AdditiveBlending, side: THREE.BackSide,
+        transparent: true, depthWrite: false,
+      }),
+    );
+    scene.add(atmo);
+
+    // ── Markers ───────────────────────────────────────────────────────
+    const markers: MarkerData[] = [];
+    const originPos: Record<string, THREE.Vector3> = {};
+
+    ORIGINS.forEach(o => {
+      const pos = latLngToVec3(o.lat, o.lng, RADIUS * 1.016);
+      originPos[o.id] = pos;
+
+      const dot = new THREE.Mesh(
+        new THREE.SphereGeometry(0.024, 16, 16),
+        new THREE.MeshBasicMaterial({ color: 0xeefff4 }),
+      );
+      dot.position.copy(pos);
+      earth.add(dot);
+
+      const halo = new THREE.Mesh(
+        new THREE.SphereGeometry(0.062, 18, 18),
+        new THREE.MeshBasicMaterial({ color: 0x00A862, transparent: true, opacity: 0.4, depthWrite: false }),
+      );
+      halo.position.copy(pos);
+      earth.add(halo);
+
+      const ring = new THREE.Mesh(
+        new THREE.SphereGeometry(0.11, 18, 18),
+        new THREE.MeshBasicMaterial({ color: 0x00ff88, transparent: true, opacity: 0.15, depthWrite: false }),
+      );
+      ring.position.copy(pos);
+      earth.add(ring);
+
+      const beamLen = 0.20;
+      const beam = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.0045, 0.001, beamLen, 8),
+        new THREE.MeshBasicMaterial({ color: 0x80ffc0, transparent: true, opacity: 0.65, depthWrite: false }),
+      );
+      beam.position.copy(pos.clone().normalize().multiplyScalar(RADIUS * 1.016 + beamLen / 2));
+      beam.lookAt(new THREE.Vector3(0, 0, 0));
+      beam.rotateX(Math.PI / 2);
+      earth.add(beam);
+
+      markers.push({ origin: o, dot, halo, ring });
+    });
+
+    // ── Arcs ──────────────────────────────────────────────────────────
+    function addArc(a: string, b: string, color: number, opacity: number, height = 0.30) {
+      const p1 = originPos[a], p2 = originPos[b];
+      const mid = p1.clone().add(p2).multiplyScalar(0.5)
+        .normalize().multiplyScalar(RADIUS * (1 + p1.distanceTo(p2) * height));
+      earth.add(new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(quadraticBezierPoints(p1, mid, p2)),
+        new THREE.LineBasicMaterial({ color, transparent: true, opacity, depthWrite: false }),
+      ));
+    }
+
+    const b8020 = ["colombia", "brasile", "nicaragua", "india"];
+    for (let i = 0; i < b8020.length; i++)
+      addArc(b8020[i], b8020[(i + 1) % b8020.length], 0x00ff88, 0.50, 0.28);
+
+    const b100 = ["colombia", "brasile", "sidamo"];
+    for (let i = 0; i < b100.length; i++)
+      addArc(b100[i], b100[(i + 1) % b100.length], 0xaaffdd, 0.38, 0.44);
+
+    // ── Controls ──────────────────────────────────────────────────────
+    let isDragging = false, hasMoved = false;
+    let prev = { x: 0, y: 0 };
+    const rot    = { x: 0.18, y: 1.0 };
+    const target = { x: 0.18, y: 1.0 };
+    const raycaster = new THREE.Raycaster();
+    const hitMeshes = () => markers.flatMap(m => [m.dot, m.halo]);
+
+    const onDown = (e: PointerEvent) => {
+      isDragging = true; hasMoved = false;
+      prev = { x: e.clientX, y: e.clientY };
+      canvas.setPointerCapture(e.pointerId);
     };
-    controls.autoRotate    = true;
-    controls.autoRotateSpeed = 0.4;
-    controls.enableZoom    = false;
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.08;
-    // Center view on Atlantic to show most origins at once
-    g.pointOfView({ lat: 8, lng: -25, altitude: 2.2 }, 0);
+    const onMove = (e: PointerEvent) => {
+      if (!isDragging) return;
+      const dx = e.clientX - prev.x, dy = e.clientY - prev.y;
+      if (Math.abs(dx) > 2 || Math.abs(dy) > 2) hasMoved = true;
+      target.y += dx * 0.005;
+      target.x  = Math.max(-Math.PI / 2.3, Math.min(Math.PI / 2.3, target.x + dy * 0.005));
+      prev = { x: e.clientX, y: e.clientY };
+    };
+    const onUp = (e: PointerEvent) => {
+      if (!hasMoved) {
+        const rect = canvas.getBoundingClientRect();
+        raycaster.setFromCamera(
+          new THREE.Vector2(
+            ((e.clientX - rect.left) / rect.width) * 2 - 1,
+            -((e.clientY - rect.top) / rect.height) * 2 + 1,
+          ),
+          camera,
+        );
+        const hit = raycaster.intersectObjects(hitMeshes())[0];
+        if (hit) {
+          const m = markers.find(m => m.dot === hit.object || m.halo === hit.object);
+          if (m) setSelectedOrigin(m.origin);
+        }
+      }
+      isDragging = false;
+    };
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      raycaster.setFromCamera(
+        new THREE.Vector2(
+          ((e.clientX - rect.left) / rect.width) * 2 - 1,
+          -((e.clientY - rect.top) / rect.height) * 2 + 1,
+        ),
+        camera,
+      );
+      canvas.style.cursor = raycaster.intersectObjects(hitMeshes()).length ? "pointer" : "grab";
+    };
+
+    canvas.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    canvas.addEventListener("mousemove", onMouseMove);
+
+    // ── Animation ─────────────────────────────────────────────────────
+    const camDir = camera.position.clone().normalize();
+    const wp = new THREE.Vector3();
+    let t = 0, rafId = 0;
+
+    function animate() {
+      rafId = requestAnimationFrame(animate);
+      t += 0.01;
+
+      if (!isDragging) target.y += 0.0008;
+      rot.x += (target.x - rot.x) * 0.08;
+      rot.y += (target.y - rot.y) * 0.08;
+
+      earth.rotation.x     = rot.x;
+      earth.rotation.y     = rot.y;
+      cloudMesh.rotation.x = rot.x;
+      cloudMesh.rotation.y = rot.y + t * 0.0025;
+      atmo.rotation.x      = rot.x;
+      atmo.rotation.y      = rot.y;
+
+      markers.forEach((m, i) => {
+        const s1 = 1 + Math.sin(t * 1.6 + i * 1.3) * 0.2;
+        m.halo.scale.setScalar(s1);
+        (m.halo.material as THREE.MeshBasicMaterial).opacity = 0.28 + Math.sin(t * 1.6 + i * 1.3) * 0.14;
+        const s2 = 1 + (Math.sin(t * 1.1 + i * 0.7) * 0.5 + 0.5) * 0.65;
+        m.ring.scale.setScalar(s2);
+        (m.ring.material as THREE.MeshBasicMaterial).opacity = Math.max(0, 0.18 - (s2 - 1) * 0.22);
+      });
+
+      const w = stage!.clientWidth, h = stage!.clientHeight;
+      markers.forEach(m => {
+        const lbl = labelRefs.current[m.origin.id];
+        if (!lbl) return;
+        m.dot.getWorldPosition(wp);
+        const facing = wp.clone().normalize().dot(camDir);
+        wp.project(camera);
+        const px = (wp.x * 0.5 + 0.5) * w;
+        const py = (-wp.y * 0.5 + 0.5) * h;
+        const offX = wp.x > 0 ? 72 : -72;
+        const tx   = wp.x > 0 ? 0 : -100;
+        lbl.style.left      = `${px}px`;
+        lbl.style.top       = `${py}px`;
+        lbl.style.transform = `translate(${tx}%,-50%) translateX(${offX}px)`;
+        lbl.classList.toggle("show", facing > 0.18);
+      });
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      ro.disconnect();
+      canvas.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      canvas.removeEventListener("mousemove", onMouseMove);
+      renderer.dispose();
+    };
   }, []);
 
   return (
     <div className="cg-stage" ref={stageRef}>
-      {dims.w > 0 && (
-        <Globe
-          ref={globeRef}
-          width={dims.w}
-          height={dims.h}
-          onGlobeReady={onGlobeReady}
+      <canvas ref={canvasRef} className="cg-canvas" />
 
-          /* Globe appearance */
-          globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-          bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-          backgroundColor="rgba(0,0,0,0)"
-          atmosphereColor="#4db8ff"
-          atmosphereAltitude={0.18}
-          showGraticules={true}
-
-          /* Origin markers */
-          pointsData={ORIGINS}
-          pointLat="lat"
-          pointLng="lng"
-          pointColor={() => "#d4e9e2"}
-          pointRadius={0.45}
-          pointAltitude={0.01}
-          onPointClick={(point) => setSelectedOrigin(point as Origin)}
-          onPointHover={(point) => {
-            if (stageRef.current)
-              stageRef.current.style.cursor = point ? "pointer" : "default";
-          }}
-
-          /* Pulsing rings on each marker */
-          ringsData={ORIGINS}
-          ringLat="lat"
-          ringLng="lng"
-          ringColor={() => (t: number) => `rgba(0,168,98,${(1 - t) * 0.7})`}
-          ringMaxRadius={3.5}
-          ringPropagationSpeed={2.5}
-          ringRepeatPeriod={1800}
-          ringAltitude={0.005}
-
-          /* Blend connection arcs */
-          arcsData={ARCS}
-          arcStartLat="startLat"
-          arcStartLng="startLng"
-          arcEndLat="endLat"
-          arcEndLng="endLng"
-          arcColor={(arc: object) => (arc as Arc).color}
-          arcAltitude={0.38}
-          arcStroke={0.45}
-          arcDashLength={0.5}
-          arcDashGap={0.25}
-          arcDashAnimateTime={3000}
-
-          /* Labels */
-          labelsData={ORIGINS}
-          labelLat="lat"
-          labelLng="lng"
-          labelText="name"
-          labelColor={() => "rgba(242,240,235,0.92)"}
-          labelSize={1.0}
-          labelDotRadius={0}
-          labelAltitude={0.025}
-          labelResolution={2}
-        />
-      )}
+      <div className="cg-overlay">
+        {ORIGINS.map(o => (
+          <div key={o.id} ref={el => { labelRefs.current[o.id] = el; }} className="cg-label">
+            <span className="cg-label__region">{o.region}</span>
+            {o.name}
+          </div>
+        ))}
+      </div>
 
       <div className="cg-corner cg-corner--tl">
         Mappa origini<br /><span>—</span> trascina · clicca per scoprire
@@ -190,13 +369,7 @@ export function CaffeGlobe() {
           <div className="cg-modal" onClick={e => e.stopPropagation()}>
             <button className="cg-modal__close" onClick={() => setSelectedOrigin(null)}>×</button>
             <div className="cg-modal__img-wrap">
-              <Image
-                src={selectedOrigin.image}
-                alt={selectedOrigin.name}
-                fill
-                className="cg-modal__img"
-                sizes="460px"
-              />
+              <Image src={selectedOrigin.image} alt={selectedOrigin.name} fill className="cg-modal__img" sizes="460px" />
               <div className="cg-modal__img-fade" />
             </div>
             <div className="cg-modal__body">
