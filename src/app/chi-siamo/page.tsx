@@ -9,63 +9,111 @@ export const metadata: Metadata = createMetadata(pagesSeo.about);
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="about-page">
       <PageHeader
         eyebrow="Chi siamo"
         title="Una cura quotidiana, tra banco e territorio."
-        text="Kenko Coffee unisce due sedi e una stessa idea: far sentire ogni persona accolta, con caffè ben preparati e un ambiente riconoscibile."
+        text="Kenko Coffee unisce due sedi e una stessa idea: far sentire ogni persona accolta, con caffe ben preparati e un ambiente riconoscibile."
       />
 
-      <section className="story-grid">
-        <article data-reveal>
-          <h2>La nostra idea di originalita&apos;</h2>
-          <p>
-            Kenko nasce da un’idea di Matteo Russo, con un obiettivo chiaro:
-portare a Guidonia un nuovo modo di vivere la caffetteria, fatto di qualità, ricerca e identità.
-
-Non un semplice bar, ma uno spazio in cui ogni dettaglio è pensato per offrire un’esperienza coerente.
-Dalla selezione delle miscele alla preparazione in tazza, ogni scelta nasce dalla volontà di valorizzare il caffè come prodotto, rispettandone origine, caratteristiche e lavorazione.
-
-Kenko è il risultato di un percorso costruito nel tempo, fatto di studio, attenzione e visione.
-Un luogo dove la tradizione incontra un approccio più contemporaneo, senza perdere autenticità.
-
-Qui il caffè non è solo una pausa, ma un momento consapevole.
-Un gesto quotidiano che, se fatto bene, può fare la differenza.
-          </p>
+      <section className="about-intro">
+        <article className="about-copy" data-reveal>
+          <p className="eyebrow">La nostra idea</p>
+          <h2>Originalita, ricerca e rituale quotidiano.</h2>
+          <div className="about-copy__text">
+            <p>
+              Kenko nasce da un&apos;idea di Matteo Russo, con un obiettivo chiaro: portare a
+              Guidonia un nuovo modo di vivere la caffetteria, fatto di qualita, ricerca e
+              identita.
+            </p>
+            <p>
+              Non un semplice bar, ma uno spazio in cui ogni dettaglio e pensato per offrire
+              un&apos;esperienza coerente: dalla selezione delle miscele alla preparazione in tazza.
+            </p>
+            <p>
+              Qui il caffe non e solo una pausa, ma un momento consapevole. Un gesto quotidiano
+              che, se fatto bene, puo fare la differenza.
+            </p>
+          </div>
+          <div className="about-stats" aria-label="Valori Kenko Coffee">
+            <span>Qualita</span>
+            <span>Accoglienza</span>
+            <span>Identita locale</span>
+          </div>
         </article>
-        <video
-          className="detail-photo"
-          src="/images/chi_siamo/chisiamo.MOV"
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ objectFit: "cover", width: "100%" }}
-        />
-      </section>
 
-      <section className="story-grid story-grid--reverse">
-        <InstagramEmbed permalink="https://www.instagram.com/p/DEFJF5gsB0t/" />
-        <article data-reveal>
-          <h2>Due sedi, una stessa cura</h2>
-          <p>
-            Guidonia Montecelio e Tagliacozzo hanno ritmi e identità diverse. In entrambe le sedi
-            portiamo la stessa attenzione: accoglienza, pulizia visiva, proposta chiara e qualità
-            costante.
-          </p>
-        </article>
-      </section>
-
-      <section className="values-section">
-        <div data-reveal>
-          <h2>Qualità, accoglienza e territorio</h2>
-          <p>
-            Il valore non sta solo nel prodotto, ma nel modo in cui viene servito: una parola al
-            momento giusto, un cappuccino fatto bene, un ambiente che invita a tornare.
-          </p>
-          <Button href="/contatti">Scopri le sedi</Button>
+        <div className="about-media" data-reveal>
+          <video src="/images/chi_siamo/chisiamo.MOV" autoPlay loop muted playsInline />
         </div>
       </section>
-    </>
+
+      <section className="about-locations">
+        <div className="about-locations__inner">
+          <div className="about-locations__media">
+            <InstagramEmbed permalink="https://www.instagram.com/p/DEFJF5gsB0t/" />
+          </div>
+          <article className="about-locations__copy" data-reveal>
+            <p className="eyebrow">Filosofia</p>
+            <h2>La nostra filosofia</h2>
+            <p>
+              Crediamo nella qualità come punto di partenza, non come optional.
+              Per questo selezioniamo con cura ogni prodotto, lavorando solo con materie prime che rispettano i nostri standard.
+
+              Ogni giorno lavoriamo per offrire qualcosa di semplice, ma fatto nel modo giusto:
+              un espresso equilibrato, una colazione curata, un ambiente accogliente ma essenziale.
+
+              Kenko è attenzione, costanza e rispetto per chi sceglie di fermarsi.
+              OGGI
+
+              Oggi Kenko è un punto di riferimento per chi cerca una caffetteria diversa,
+              capace di unire gusto, atmosfera e identità.
+
+              Un luogo pensato per chi non si accontenta.
+              Per chi cerca qualità, anche nelle cose più semplici.
+            </p>
+            <div className="about-location-tags" aria-label="Sedi Kenko Coffee">
+              <span>Guidonia Montecelio</span>
+              <span>Tagliacozzo</span>
+            </div>
+            <Button href="/contatti">Vedi contatti</Button>
+          </article>
+        </div>
+      </section>
+
+      <section className="about-values">
+        <div className="about-values__header" data-reveal>
+          <p className="eyebrow">Qualita</p>
+          <h2>Il nostro approccio</h2>
+          <p>
+            Per noi la qualità non è un’aggiunta, è il punto di partenza.
+            Ogni scelta viene fatta con attenzione, dalla selezione delle materie prime fino alla preparazione in tazza.
+
+            Lavoriamo su ciò che conta davvero: equilibrio, costanza e cura del dettaglio.
+            Senza forzature, senza eccessi.
+
+            Kenko è questo: fare le cose semplici, ma farle nel modo giusto.
+            Ogni giorno.
+          </p>
+        </div>
+
+        <div className="about-values__grid">
+          <article data-reveal>
+            <span>01</span>
+            <h3>Materia prima</h3>
+            <p>Scelte precise, miscele curate e attenzione costante alla resa in tazza.</p>
+          </article>
+          <article data-reveal>
+            <span>02</span>
+            <h3>Servizio</h3>
+            <p>Un banco ordinato, tempi giusti e un modo di accogliere semplice, diretto, umano.</p>
+          </article>
+          <article data-reveal>
+            <span>03</span>
+            <h3>Territorio</h3>
+            <p>Due luoghi diversi, una presenza riconoscibile e legata alla vita quotidiana locale.</p>
+          </article>
+        </div>
+      </section>
+    </div>
   );
 }
