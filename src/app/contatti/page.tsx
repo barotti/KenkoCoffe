@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ContactBlock } from "@/components/ContactBlock";
-import { ContactForm } from "@/components/ContactForm";
 import { PageHeader } from "@/components/PageHeader";
 import { pagesSeo } from "@/data/seo";
 import { createMetadata } from "@/lib/metadata";
@@ -21,12 +20,33 @@ export default function ContactsPage() {
         text="Trova indirizzi, orari e indicazioni per Guidonia Montecelio e Tagliacozzo. I dati definitivi verranno aggiornati prima del deploy."
       />
       <ContactBlock />
-      <section className="form-section">
-        <div>
-          <p className="eyebrow">Scrivici</p>
-          <h2>Una richiesta, una prenotazione o un&apos;informazione.</h2>
+      <section className="contact-actions" aria-labelledby="contact-actions-title">
+        <header className="contact-actions__head">
+          <p className="eyebrow">Opportunita</p>
+          <h2 id="contact-actions-title">Sei in cerca di una nuova sfida?</h2>
+        </header>
+        <div className="contact-actions__grid">
+          <article className="contact-action contact-action--dark" data-reveal>
+            <h3>Lavora con noi</h3>
+            <p>
+              Cerchiamo persone attente, sorridenti e curiose: se ami il rito del caffe
+              e il lavoro di sala, raccontaci chi sei.
+            </p>
+            <a href="mailto:?subject=Candidatura%20Kenko%20Kohi">
+              Posizioni aperte
+            </a>
+          </article>
+          <article className="contact-action contact-action--green" data-reveal>
+            <h3>Sei un fornitore?</h3>
+            <p>
+              Prodotti, materie prime, servizi o collaborazioni locali: siamo aperti a
+              proposte coerenti con la qualita Kenko.
+            </p>
+            <a href="mailto:?subject=Proposta%20fornitore%20Kenko%20Kohi">
+              Presentati
+            </a>
+          </article>
         </div>
-        <ContactForm />
       </section>
     </>
   );

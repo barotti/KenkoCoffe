@@ -49,7 +49,7 @@ export default function Home() {
             pensata per accompagnare bene ogni momento della giornata.
           </p>
           <div className="hero__actions" data-hero-reveal>
-            <Button href="/contatti">Le Nostre Sedi</Button>
+            <Button href="/contatti">Prenota ora</Button>
             <Button href="/chi-siamo" variant="light">
               Chi siamo
             </Button>

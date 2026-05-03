@@ -23,7 +23,15 @@ export default function AboutPage() {
             tempi giusti e spazi pensati per iniziare la giornata o prendersi una pausa.
           </p>
         </article>
-        <div className="detail-photo detail-photo--cups" aria-label="Tazze e dettagli del banco caffetteria" />
+        <video
+          className="detail-photo"
+          src="/images/chi_siamo/chisiamo.MOV"
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ objectFit: "cover", width: "100%" }}
+        />
       </section>
 
       <section className="story-grid story-grid--reverse">
