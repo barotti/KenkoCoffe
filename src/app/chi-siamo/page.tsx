@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/Button";
+import { InstagramEmbed } from "@/components/InstagramEmbed";
 import { PageHeader } from "@/components/PageHeader";
 import { pagesSeo } from "@/data/seo";
 import { createMetadata } from "@/lib/metadata";
@@ -17,10 +18,19 @@ export default function AboutPage() {
 
       <section className="story-grid">
         <article data-reveal>
-          <h2>La nostra idea di caffetteria</h2>
+          <h2>La nostra idea di originalita&apos;</h2>
           <p>
-            Crediamo in una caffetteria concreta: qualità nella tazza, attenzione al servizio,
-            tempi giusti e spazi pensati per iniziare la giornata o prendersi una pausa.
+            Kenko nasce da un’idea di Matteo Russo, con un obiettivo chiaro:
+portare a Guidonia un nuovo modo di vivere la caffetteria, fatto di qualità, ricerca e identità.
+
+Non un semplice bar, ma uno spazio in cui ogni dettaglio è pensato per offrire un’esperienza coerente.
+Dalla selezione delle miscele alla preparazione in tazza, ogni scelta nasce dalla volontà di valorizzare il caffè come prodotto, rispettandone origine, caratteristiche e lavorazione.
+
+Kenko è il risultato di un percorso costruito nel tempo, fatto di studio, attenzione e visione.
+Un luogo dove la tradizione incontra un approccio più contemporaneo, senza perdere autenticità.
+
+Qui il caffè non è solo una pausa, ma un momento consapevole.
+Un gesto quotidiano che, se fatto bene, può fare la differenza.
           </p>
         </article>
         <video
@@ -35,7 +45,7 @@ export default function AboutPage() {
       </section>
 
       <section className="story-grid story-grid--reverse">
-        <div className="detail-photo detail-photo--bar" aria-label="Banco caffetteria con caffè servito" />
+        <InstagramEmbed permalink="https://www.instagram.com/p/DEFJF5gsB0t/" />
         <article data-reveal>
           <h2>Due sedi, una stessa cura</h2>
           <p>

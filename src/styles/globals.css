@@ -658,6 +658,33 @@ p {
     linear-gradient(45deg, #0d0d0d, #6b3f2a 55%, #d8d7cf);
 }
 
+.instagram-embed {
+  align-self: start;
+  background: var(--color-black);
+  box-shadow: 0 28px 80px rgba(13, 13, 13, 0.12);
+  max-width: 540px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.instagram-embed__crop {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.instagram-embed__crop iframe {
+  border: 0;
+  display: block;
+  height: calc(100% + 240px);
+  left: 0;
+  max-width: 100% !important;
+  position: absolute;
+  top: -54px;
+  width: 100%;
+}
+
 .story-grid--reverse {
   padding-top: 0;
 }
@@ -1168,6 +1195,11 @@ p {
   .contact-card dl div {
     gap: 6px;
     grid-template-columns: 1fr;
+  }
+
+  .instagram-embed__crop iframe {
+    height: calc(100% + 220px);
+    top: -50px;
   }
 }
 
