@@ -21,7 +21,7 @@ export default function CaffePage() {
           <h1 className="cp-hero__title">
             Quattro continenti,<br />
             <em>una sola</em> tazza.
-            <span className="cp-hero__sub">— Cinque origini, due blend, un rituale.</span>
+            <span className="cp-hero__sub">Cinque origini, due blend, un rituale.</span>
           </h1>
           <p className="cp-hero__lede">
             Selezioniamo i chicchi di cinque regioni del mondo per comporre blend
@@ -73,12 +73,6 @@ export default function CaffePage() {
                 <span key={c} className="cp-chip">{c}</span>
               ))}
             </div>
-            <dl className="cp-tasting">
-              <dt>Profilo</dt><dd>Dolce e deciso</dd>
-              <dt>Note</dt><dd>Cioccolato fondente</dd>
-              <dt>Acidità</dt><dd>Moderata</dd>
-              <dt>Retrogusto</dt><dd>Frutti rossi · sciroppo d&apos;acero</dd>
-            </dl>
           </article>
 
           <article className="cp-blend">
@@ -99,12 +93,6 @@ export default function CaffePage() {
                 <span key={c} className="cp-chip">{c}</span>
               ))}
             </div>
-            <dl className="cp-tasting">
-              <dt>Profilo</dt><dd>Aromatico e raffinato</dd>
-              <dt>Note</dt><dd>Fiori bianchi · cacao chiaro</dd>
-              <dt>Acidità</dt><dd>Viva e brillante</dd>
-              <dt>Retrogusto</dt><dd>Agrumi · miele millefiori</dd>
-            </dl>
           </article>
         </div>
       </section>

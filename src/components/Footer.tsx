@@ -12,7 +12,7 @@ export function Footer() {
             <Image src="/images/home/LOGO.PNG" alt="Kenkō" width={34} height={34} style={{ objectFit: "contain" }} />
             <span>Kenkō Kohi</span>
           </Link>
-          <p>Caffetteria artigianale.<br />Guidonia Montecelio & Tagliacozzo.</p>
+          <p>Caffetteria artigianale.<br />Guidonia & Tagliacozzo.</p>
         </div>
         <div className="footer-grid">
           <div>
