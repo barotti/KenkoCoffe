@@ -73,7 +73,7 @@ export default function Home() {
         </div>
         <div className="idea-card" data-reveal>
           <p>
-            <strong className="brand-name">Kenkō Coffee</strong> nasce per dare al rito del caffè un luogo curato e familiare: materia
+            <strong className="brand-name">Kenkō</strong> nasce per dare al rito del caffè un luogo curato e familiare: materia
             prima selezionata, servizio presente, ambienti caldi e una proposta pensata per
             colazione, pausa e incontro.
           </p>

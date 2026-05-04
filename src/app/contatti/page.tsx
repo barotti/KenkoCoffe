@@ -33,7 +33,7 @@ export default function ContactsPage() {
               e il lavoro di sala, raccontaci chi sei.
             </p>
             <a href="mailto:?subject=Candidatura%20Kenk%C5%8D%20Kohi">
-              Posizioni aperte
+              Contattaci
             </a>
           </article>
           <article className="contact-action contact-action--green" data-reveal>
