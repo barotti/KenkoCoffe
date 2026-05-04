@@ -32,7 +32,7 @@ export default function Home() {
           </video>
           <Image
             src="/images/home/_DSC7150.JPG"
-            alt="Kenko Coffee"
+            alt="Kenkō Coffee"
             fill
             className="hero__img"
             style={{ objectFit: "cover", objectPosition: "center" }}
@@ -40,14 +40,16 @@ export default function Home() {
           />
         </div>
         <div className="hero__content">
-          <p className="eyebrow" data-hero-reveal>
-            Guidonia Montecelio / Tagliacozzo
-          </p>
-          <h1 data-hero-reveal>Kenko Kohi</h1>
-          <p data-hero-reveal>
-            Caffe preparati con attenzione, colazioni fragranti e un&apos;accoglienza concreta,
-            pensata per accompagnare bene ogni momento della giornata.
-          </p>
+          <div data-hero-reveal>
+            <Image
+              src="/images/home/LOGONUOVO.svg"
+              alt="Kenkō Coffee"
+              width={800}
+              height={800}
+              className="hero__logo"
+              priority
+            />
+          </div>
           <div className="hero__actions" data-hero-reveal>
             <Button href="/contatti">Prenota ora</Button>
             <Button href="/chi-siamo" variant="light">
@@ -63,7 +65,7 @@ export default function Home() {
           <h2>Una caffetteria locale.</h2>
           <Image
             src="/images/home/LOGO.PNG"
-            alt="Kenko Coffee"
+            alt="Kenkō Coffee"
             width={180}
             height={60}
             className="editorial-logo"
@@ -71,7 +73,7 @@ export default function Home() {
         </div>
         <div className="idea-card" data-reveal>
           <p>
-            Kenko Coffee nasce per dare al rito del caffe un luogo curato e familiare: materia
+            <strong className="brand-name">Kenkō Coffee</strong> nasce per dare al rito del caffe un luogo curato e familiare: materia
             prima selezionata, servizio presente, ambienti caldi e una proposta pensata per
             colazione, pausa e incontro.
           </p>

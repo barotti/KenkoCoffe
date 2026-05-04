@@ -85,6 +85,10 @@ main {
   text-transform: uppercase;
 }
 
+.brand-name {
+  font-weight: 800;
+}
+
 .brand__mark {
   align-items: center;
   background: var(--color-green);
@@ -262,9 +266,17 @@ main {
   display: flex;
   flex-direction: column;
   max-width: 1120px;
-  padding: clamp(88px, 10vw, 130px) clamp(20px, 6vw, 84px) clamp(60px, 8vw, 100px);
+  padding: clamp(20px, 4vw, 40px) clamp(20px, 6vw, 84px);
+  margin-bottom: 12vh;
   position: relative;
   z-index: 1;
+}
+
+.hero__logo {
+  display: block;
+  height: auto;
+  width: clamp(260px, 32vw, 480px);
+  margin-bottom: -120px;
 }
 
 .eyebrow {
@@ -325,7 +337,7 @@ p {
   flex-wrap: wrap;
   gap: 12px;
   justify-content: center;
-  margin-top: 34px;
+  margin-top: -50px;
 }
 
 .button,
