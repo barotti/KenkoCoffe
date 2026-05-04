@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { InstagramEmbed } from "@/components/InstagramEmbed";
-import { PageHeader } from "@/components/PageHeader";
 import { pagesSeo } from "@/data/seo";
 import { createMetadata } from "@/lib/metadata";
 
@@ -10,19 +9,13 @@ export const metadata: Metadata = createMetadata(pagesSeo.about);
 export default function AboutPage() {
   return (
     <div className="about-page">
-      <PageHeader
-        eyebrow="Chi siamo"
-        title="Una cura quotidiana, tra banco e territorio."
-        text="Kenko Coffee unisce due sedi e una stessa idea: far sentire ogni persona accolta, con caffe ben preparati e un ambiente riconoscibile."
-      />
-
       <section className="about-intro">
         <article className="about-copy" data-reveal>
           <p className="eyebrow">La nostra idea</p>
           <h2>Originalita, ricerca e rituale quotidiano.</h2>
           <div className="about-copy__text">
             <p>
-              Kenko nasce da un&apos;idea di Matteo Russo, con un obiettivo chiaro: portare a
+              <strong className="brand-name">Kenkō</strong> nasce da un&apos;idea di Matteo Russo, con un obiettivo chiaro: portare a
               Guidonia un nuovo modo di vivere la caffetteria, fatto di qualita, ricerca e
               identita.
             </p>
@@ -35,7 +28,7 @@ export default function AboutPage() {
               che, se fatto bene, puo fare la differenza.
             </p>
           </div>
-          <div className="about-stats" aria-label="Valori Kenko Coffee">
+          <div className="about-stats" aria-label="Valori Kenkō Coffee">
             <span>Qualita</span>
             <span>Accoglienza</span>
             <span>Identita locale</span>
@@ -62,16 +55,16 @@ export default function AboutPage() {
               Ogni giorno lavoriamo per offrire qualcosa di semplice, ma fatto nel modo giusto:
               un espresso equilibrato, una colazione curata, un ambiente accogliente ma essenziale.
 
-              Kenko è attenzione, costanza e rispetto per chi sceglie di fermarsi.
+              <strong className="brand-name">Kenkō</strong> è attenzione, costanza e rispetto per chi sceglie di fermarsi.
               OGGI
 
-              Oggi Kenko è un punto di riferimento per chi cerca una caffetteria diversa,
+              Oggi <strong className="brand-name">Kenkō</strong> è un punto di riferimento per chi cerca una caffetteria diversa,
               capace di unire gusto, atmosfera e identità.
 
               Un luogo pensato per chi non si accontenta.
               Per chi cerca qualità, anche nelle cose più semplici.
             </p>
-            <div className="about-location-tags" aria-label="Sedi Kenko Coffee">
+            <div className="about-location-tags" aria-label="Sedi Kenkō Coffee">
               <span>Guidonia Montecelio</span>
               <span>Tagliacozzo</span>
             </div>
@@ -91,7 +84,7 @@ export default function AboutPage() {
             Lavoriamo su ciò che conta davvero: equilibrio, costanza e cura del dettaglio.
             Senza forzature, senza eccessi.
 
-            Kenko è questo: fare le cose semplici, ma farle nel modo giusto.
+            <strong className="brand-name">Kenkō</strong> è questo: fare le cose semplici, ma farle nel modo giusto.
             Ogni giorno.
           </p>
         </div>
