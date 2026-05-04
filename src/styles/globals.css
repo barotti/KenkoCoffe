@@ -73,7 +73,7 @@ main {
   position: sticky;
   right: 0;
   top: 0;
-  z-index: 20;
+  z-index: 10000;
 }
 
 .brand {
@@ -1353,6 +1353,10 @@ p {
 }
 
 @media (max-width: 860px) {
+  body {
+    padding-top: 80px;
+  }
+
   .site-header {
     align-items: center;
     display: grid;
@@ -1360,6 +1364,8 @@ p {
     grid-template-columns: auto 1fr;
     min-height: auto;
     padding: 14px 20px;
+    position: fixed;
+    width: 100%;
   }
 
   .site-header--open {
