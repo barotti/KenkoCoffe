@@ -54,10 +54,6 @@ export type GalleryMedia = {
 };
 
 const guidoniaGalleryFiles = [
-  "11EDBA5E-40D3-497F-B233-30D8CB4BE258.JPG",
-  "4dd00912-7d1a-4756-ae73-33593a29cbff(1).jpg",
-  "4dd00912-7d1a-4756-ae73-33593a29cbff.jpg",
-  "508c1860-10ca-4b4c-8520-b93aea77f219.jpg",
   "Beige Minimale Bar Collage di Foto Storia Instagram.PNG",
   "Brand Visual Kenko 1(1).png",
   "Brand Visual Kenko 1.png",
