@@ -100,7 +100,7 @@ export function CaffeGlobe() {
 
     function applySize(w: number, h: number) {
       if (!w || !h) return;
-      renderer.setSize(w, h, false);
+      renderer.setSize(w, h);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
     }
