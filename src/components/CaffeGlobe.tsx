@@ -20,31 +20,31 @@ const ORIGINS: Origin[] = [
     id: "colombia", name: "Colombia", region: "Andes Centrali",
     coord: "04°34′ N · 74°17′ W", lat: 4.5709, lng: -74.2973,
     text: "Coltivazioni d'altura sulle pendici della Cordigliera. Climi miti e suoli vulcanici donano un caffè equilibrato, dolce, con la rotondità classica dell'arabica colombiana.",
-    image: "/images/caffe/origins/colombia.jpg",
+    image: "/images/caffe/9fabdcfbbc2cfe5644972ad44865acbc.jpg",
   },
   {
     id: "brasile", name: "Brasile", region: "Cerrado Mineiro",
     coord: "14°14′ S · 51°55′ W", lat: -14.2350, lng: -51.9253,
     text: "Patria del caffè più consumato al mondo. Le piantagioni del Minas Gerais regalano corpo, dolcezza naturale e quella firma di cacao e nocciola che tiene insieme i nostri blend.",
-    image: "/images/caffe/origins/brasile.jpg",
+    image: "/images/caffe/brasile.webp",
   },
   {
     id: "nicaragua", name: "Nicaragua", region: "Jinotega",
     coord: "12°51′ N · 85°12′ W", lat: 12.8654, lng: -85.2072,
     text: "Le montagne di Jinotega, ombreggiate dalla foresta tropicale, producono caffè con corpo pieno e una vibrante acidità. È qui che nasce la spinta fruttata del nostro 80/20.",
-    image: "/images/caffe/origins/nicaragua.jpg",
+    image: "/images/caffe/nicaragua.webp",
   },
   {
     id: "india", name: "India", region: "Karnataka",
     coord: "12°58′ N · 77°35′ E", lat: 12.9716, lng: 77.5946,
     text: "Sui Western Ghats si coltiva una robusta dal carattere unico, meno amara, con sentori speziati. Porta al blend struttura e quella crema densa che firma l'espresso.",
-    image: "/images/caffe/origins/india.jpg",
+    image: "/images/caffe/india.webp",
   },
   {
     id: "sidamo", name: "Sidamo", region: "Etiopia",
     coord: "06°44′ N · 38°29′ E", lat: 6.7333, lng: 38.4833,
     text: "La culla del caffè. Negli altopiani del sud etiope, l'arabica cresce come pianta spontanea da secoli. Aroma floreale, agrumato, complesso — il cuore raffinato del Blend 100%.",
-    image: "/images/caffe/origins/sidamo.jpg",
+    image: "/images/caffe/sidamo.webp",
   },
 ];
 
