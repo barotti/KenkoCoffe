@@ -43,7 +43,7 @@ export default function PrivacyPolicyPage() {
           necessario a gestire la comunicazione e, successivamente, eliminati.
         </p>
 
-        <h2>Diritti dell'interessato</h2>
+        <h2>Diritti dell&apos;interessato</h2>
         <p>
           Hai il diritto di accedere, rettificare, cancellare o limitare il
           trattamento dei tuoi dati. Per esercitare i tuoi diritti scrivi a{" "}
