@@ -12,26 +12,26 @@ export default function AboutPage() {
       <section className="about-intro">
         <article className="about-copy" data-reveal>
           <p className="eyebrow">La nostra idea</p>
-          <h2>Originalita, ricerca e rituale quotidiano.</h2>
+          <h2>Originalità, ricerca e rituale quotidiano.</h2>
           <div className="about-copy__text">
             <p>
               <strong className="brand-name">Kenkō</strong> nasce da un&apos;idea di Matteo Russo, con un obiettivo chiaro: portare a
-              Guidonia un nuovo modo di vivere la caffetteria, fatto di qualita, ricerca e
-              identita.
+              Guidonia un nuovo modo di vivere la caffetteria, fatto di qualità, ricerca e
+              identità.
             </p>
             <p>
-              Non un semplice bar, ma uno spazio in cui ogni dettaglio e pensato per offrire
+              Non un semplice bar, ma uno spazio in cui ogni dettaglio è pensato per offrire
               un&apos;esperienza coerente: dalla selezione delle miscele alla preparazione in tazza.
             </p>
             <p>
-              Qui il caffe non e solo una pausa, ma un momento consapevole. Un gesto quotidiano
-              che, se fatto bene, puo fare la differenza.
+              Qui il caffè non è solo una pausa, ma un momento consapevole. Un gesto quotidiano
+              che, se fatto bene, può fare la differenza.
             </p>
           </div>
           <div className="about-stats" aria-label="Valori Kenkō Coffee">
-            <span>Qualita</span>
+            <span>Qualità</span>
             <span>Accoglienza</span>
-            <span>Identita locale</span>
+            <span>Identità locale</span>
           </div>
         </article>
 
@@ -56,7 +56,7 @@ export default function AboutPage() {
               un espresso equilibrato, una colazione curata, un ambiente accogliente ma essenziale.
 
               <strong className="brand-name">Kenkō</strong> è attenzione, costanza e rispetto per chi sceglie di fermarsi.
-              OGGI
+            
 
               Oggi <strong className="brand-name">Kenkō</strong> è un punto di riferimento per chi cerca una caffetteria diversa,
               capace di unire gusto, atmosfera e identità.
@@ -75,7 +75,7 @@ export default function AboutPage() {
 
       <section className="about-values">
         <div className="about-values__header" data-reveal>
-          <p className="eyebrow">Qualita</p>
+          <p className="eyebrow">Qualità</p>
           <h2>Il nostro approccio</h2>
           <p>
             Per noi la qualità non è un’aggiunta, è il punto di partenza.

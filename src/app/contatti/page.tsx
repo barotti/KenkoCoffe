@@ -22,14 +22,14 @@ export default function ContactsPage() {
       <ContactBlock />
       <section className="contact-actions" aria-labelledby="contact-actions-title">
         <header className="contact-actions__head">
-          <p className="eyebrow">Opportunita</p>
+          <p className="eyebrow">Opportunità</p>
           <h2 id="contact-actions-title">Sei in cerca di una nuova sfida?</h2>
         </header>
         <div className="contact-actions__grid">
           <article className="contact-action contact-action--dark" data-reveal>
             <h3>Lavora con noi</h3>
             <p>
-              Cerchiamo persone attente, sorridenti e curiose: se ami il rito del caffe
+              Cerchiamo persone attente, sorridenti e curiose: se ami il rito del caffè
               e il lavoro di sala, raccontaci chi sei.
             </p>
             <a href="mailto:?subject=Candidatura%20Kenk%C5%8D%20Kohi">
@@ -40,7 +40,7 @@ export default function ContactsPage() {
             <h3>Sei un fornitore?</h3>
             <p>
               Prodotti, materie prime, servizi o collaborazioni locali: siamo aperti a
-              proposte coerenti con la qualita <strong className="brand-name">Kenkō</strong>.
+              proposte coerenti con la qualità <strong className="brand-name">Kenkō</strong>.
             </p>
             <a href="mailto:?subject=Proposta%20fornitore%20Kenk%C5%8D%20Kohi">
               Presentati

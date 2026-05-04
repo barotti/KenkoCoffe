@@ -649,6 +649,11 @@ Il lavoro SEO è completato quando:
 - Evitare bundle GSAP non usati.
 - Target Lighthouse: 90+ performance, 90+ accessibilità, 90+ SEO.
 
+## Regola operativa Next.js in sviluppo
+- Dopo ogni modifica a codice, CSS, asset o pagine, verificare sempre che il dev server non mostri errori di cache Next.js tipo `Cannot find module './124.js'` o file mancanti dentro `.next/server/app`.
+- Se compare questo errore, fermare i processi `node`/`npm` del dev server, eseguire `npm run clean`, poi `npm run build` e riavviare `npm run dev`.
+- Prima di consegnare una modifica, controllare almeno una richiesta locale alla pagina interessata e confermare che risponda senza overlay di errore.
+
 ## Criteri di accettazione
 Il lavoro è completato quando:
 - Esistono le pagine Home, Chi siamo e Contatti.
