@@ -12,10 +12,10 @@ export function Header() {
 
   return (
     <header className={`site-header${isMenuOpen ? " site-header--open" : ""}`}>
-      <Link className="brand" href="/" aria-label="Kenko Coffee home" onClick={closeMenu}>
+      <Link className="brand" href="/" aria-label="Kenkō Coffee home" onClick={closeMenu}>
         <Image
           src="/images/home/LOGO.PNG"
-          alt="Kenko Coffee"
+          alt="Kenkō Coffee"
           width={120}
           height={40}
           className="brand__logo"

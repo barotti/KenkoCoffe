@@ -34,10 +34,10 @@ const socials = [
 ];
 
 const photos = [
-  { src: "/images/home/_DSC4951.JPG", alt: "Kenko Coffee" },
-  { src: "/images/home/_DSC6155.JPG", alt: "Kenko Coffee" },
-  { src: "/images/home/_DSC4937.jpg", alt: "Kenko Coffee" },
-  { src: "/images/home/65E61E78-1EAF-410C-9B2D-D100575DC3AD.JPG", alt: "Kenko Coffee" },
+  { src: "/images/home/_DSC4951.JPG", alt: "Kenkō Coffee" },
+  { src: "/images/home/_DSC6155.JPG", alt: "Kenkō Coffee" },
+  { src: "/images/home/_DSC4937.jpg", alt: "Kenkō Coffee" },
+  { src: "/images/home/65E61E78-1EAF-410C-9B2D-D100575DC3AD.JPG", alt: "Kenkō Coffee" },
 ];
 
 export function InstagramFeed() {

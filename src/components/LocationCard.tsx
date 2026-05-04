@@ -24,7 +24,7 @@ export function LocationCard({ location, headingLevel = "h3" }: LocationCardProp
         <div className="location-card__content">
           <p>{location.region}</p>
           <Heading>{location.name}</Heading>
-          <span>{location.address}</span>
+          <p className="location-card__address">{location.address}</p>
           <span className="arrow-link">
             Scopri la sede <span aria-hidden="true">-&gt;</span>
           </span>

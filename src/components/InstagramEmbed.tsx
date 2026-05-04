@@ -10,7 +10,7 @@ export function InstagramEmbed({ permalink }: InstagramEmbedProps) {
       <div className="instagram-embed__crop">
         <iframe
           src={embedUrl}
-          title="Video Instagram Kenko Coffee"
+          title="Video Instagram Kenkō Coffee"
           loading="lazy"
           allowFullScreen
         />

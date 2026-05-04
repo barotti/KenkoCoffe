@@ -302,12 +302,12 @@ export function AromaWheel() {
     <section className="aw-section" id="origini">
       <header className="aw-section-head">
         <div>
-          <div className="aw-eyebrow">Il gusto Kenko · La carta sensoriale</div>
+          <div className="aw-eyebrow">Il gusto <strong className="brand-name">Kenkō</strong> · La carta sensoriale</div>
           <h2 className="aw-title">La ruota degli <em>aromi.</em></h2>
         </div>
         <div className="aw-head-right">
           <p>
-            Ogni tazza Kenko è un viaggio attraverso <em>otto famiglie aromatiche</em>.
+            Ogni tazza <strong className="brand-name">Kenkō</strong> è un viaggio attraverso <em>otto famiglie aromatiche</em>.
             Scegli una nota: ti diremo quale dei nostri due blend la custodisce, e perché.
           </p>
           <div className="aw-filter-row" ref={filterRowRef}>
@@ -320,10 +320,10 @@ export function AromaWheel() {
 
       <div className="aw-wheel-layout">
         <div className="aw-wheel-stage">
-          <svg ref={svgRef} className="aw-wheel-svg" viewBox="0 0 640 640" aria-label="Ruota degli aromi del caffè Kenko" />
+          <svg ref={svgRef} className="aw-wheel-svg" viewBox="0 0 640 640" aria-label="Ruota degli aromi del caffè Kenkō" />
           <div className="aw-wheel-center" ref={centerRef}>
             <div className="aw-center-default">
-              <Image src="/images/home/LOGO.PNG" alt="Kenko" width={80} height={80} className="aw-center-logo" />
+              <Image src="/images/home/LOGO.PNG" alt="Kenkō" width={80} height={80} className="aw-center-logo" />
             </div>
             <div className="aw-center-active">
               <div className="aw-cat-name" ref={catRef} />
@@ -361,13 +361,13 @@ export function AromaWheel() {
           <p>Ogni famiglia raccoglie <strong>tre note specifiche</strong> che possono emergere durante l&apos;assaggio, a seconda dell&apos;origine, della tostatura e dell&apos;estrazione.</p>
         </div>
         <div className="aw-legend-item">
-          <h4>03 / I blend Kenko</h4>
+          <h4>03 / I blend <strong className="brand-name">Kenkō</strong></h4>
           <p>Le note <strong>verdi</strong> sono presenti nei nostri due blend: <em>80/20</em> per chi cerca corpo e dolcezza decisa, <em>100%</em> per chi ama la finezza pura.</p>
         </div>
       </div>
 
       <div className="aw-foot">
-        <span>Kenko Kohi · The Origin of Quality</span>
+        <span><strong className="brand-name">Kenkō Kohi</strong> · The Origin of Quality</span>
         <span className="aw-triangle-mini">▽</span>
         <span>Carta aromatica · Edizione 2026</span>
       </div>

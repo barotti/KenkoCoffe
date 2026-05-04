@@ -4,7 +4,7 @@ import { AromaWheel } from "@/components/AromaWheel";
 import "./caffe.css";
 
 export const metadata: Metadata = {
-  title: "Kenko · Il caffè magico",
+  title: "Kenkō · Il caffè magico",
   description: "Blend selezionati dalle migliori piantagioni del mondo. Colombia, Brasile, Nicaragua, India e Sidamo in ogni tazza.",
 };
 

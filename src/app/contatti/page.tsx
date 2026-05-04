@@ -32,7 +32,7 @@ export default function ContactsPage() {
               Cerchiamo persone attente, sorridenti e curiose: se ami il rito del caffe
               e il lavoro di sala, raccontaci chi sei.
             </p>
-            <a href="mailto:?subject=Candidatura%20Kenko%20Kohi">
+            <a href="mailto:?subject=Candidatura%20Kenk%C5%8D%20Kohi">
               Posizioni aperte
             </a>
           </article>
@@ -40,9 +40,9 @@ export default function ContactsPage() {
             <h3>Sei un fornitore?</h3>
             <p>
               Prodotti, materie prime, servizi o collaborazioni locali: siamo aperti a
-              proposte coerenti con la qualita Kenko.
+              proposte coerenti con la qualita <strong className="brand-name">Kenkō</strong>.
             </p>
-            <a href="mailto:?subject=Proposta%20fornitore%20Kenko%20Kohi">
+            <a href="mailto:?subject=Proposta%20fornitore%20Kenk%C5%8D%20Kohi">
               Presentati
             </a>
           </article>

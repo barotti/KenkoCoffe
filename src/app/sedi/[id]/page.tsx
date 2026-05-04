@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     return {};
   }
 
-  const title = `${location.name} | Gallery Kenko Kohi`;
-  const description = `Gallery fotografica e video della sede Kenko Kohi di ${location.name}.`;
+  const title = `${location.name} | Gallery Kenkō Kohi`;
+  const description = `Gallery fotografica e video della sede Kenkō Kohi di ${location.name}.`;
 
   return {
     title,
@@ -68,7 +68,7 @@ export default async function LocationGalleryPage({ params }: LocationPageProps)
       <header className="gallery-header" data-reveal>
         <p className="eyebrow">Gallery</p>
         <h1>{location.name}</h1>
-        <p className="gallery-header__meta">{location.region} — Kenko Kohi</p>
+        <p className="gallery-header__meta">{location.region} — <strong className="brand-name">Kenkō Kohi</strong></p>
       </header>
 
       <hr className="gallery-divider" />

@@ -613,6 +613,11 @@ p {
   color: var(--color-light-stone);
 }
 
+.location-card__address {
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
 .experience-grid {
   display: grid;
   gap: 18px;
@@ -1231,33 +1236,120 @@ p {
 .site-footer {
   background: var(--color-black);
   color: var(--color-white);
-  display: grid;
-  gap: 30px;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  padding: clamp(48px, 8vw, 90px) clamp(20px, 5vw, 64px);
+  padding: 0 clamp(20px, 5vw, 64px);
 }
 
-.site-footer p {
-  color: var(--color-light-stone);
-  max-width: 420px;
+.footer-top {
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  padding: clamp(48px, 8vw, 90px) 0 clamp(40px, 6vw, 72px);
+}
+
+.footer-brand p {
+  color: var(--color-stone);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin-top: 22px;
+  max-width: 220px;
 }
 
 .footer-grid {
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .footer-grid h2 {
-  color: var(--color-light-stone);
-  font-size: 0.82rem;
+  color: var(--color-stone);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
   text-transform: uppercase;
 }
 
 .footer-grid a {
-  color: var(--color-white);
+  color: var(--color-light-stone);
   display: block;
-  margin-bottom: 12px;
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+  transition: color 200ms ease;
+}
+
+.footer-grid a:hover {
+  color: var(--color-white);
+}
+
+.footer-bottom {
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 0;
+}
+
+.footer-bottom p {
+  color: var(--color-stone);
+  font-size: 0.78rem;
+  margin: 0;
+  max-width: none;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal a {
+  color: var(--color-stone);
+  font-size: 0.78rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 200ms ease;
+}
+
+.footer-legal a:hover {
+  color: var(--color-white);
+}
+
+.legal-page {
+  margin: 0 auto;
+  max-width: var(--max-width);
+  padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 64px);
+}
+
+.legal-page__inner {
+  max-width: 680px;
+}
+
+.legal-page h1 {
+  margin-bottom: 28px;
+}
+
+.legal-page h2 {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  margin-top: 36px;
+  text-transform: uppercase;
+}
+
+.legal-page p {
+  color: var(--color-stone);
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+.legal-page__intro {
+  color: var(--color-charcoal) !important;
+  font-size: 1.05rem;
+  margin-bottom: 40px !important;
+}
+
+.legal-page a {
+  color: var(--color-green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 @media (max-width: 860px) {
@@ -1314,9 +1406,22 @@ p {
   .about-intro,
   .about-locations__inner,
   .form-section,
-  .contact-block,
-  .site-footer {
+  .contact-block {
     grid-template-columns: 1fr;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
   }
 
   .locations-grid,
